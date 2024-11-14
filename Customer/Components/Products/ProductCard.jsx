@@ -5,7 +5,7 @@ const ProductCard = ({ products }) => {
   return (
     <div className="productCardContainer flex flex-wrap">
       {products.map((product, index) => {
-        const { description, mrp, discountPrice, actualPrice, discount, imageSrc, imageAlt } = product;
+        const { description, mrp, discountPrice, discount, imageSrc, imageAlt } = product;
         
         return (
           <div key={index} className='rounded-xl productCard w-[15rem] m-3 transition-all cursor-pointer'>

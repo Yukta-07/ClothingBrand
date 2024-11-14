@@ -1,7 +1,8 @@
 
 import './App.css'
-// import Product from './Customer/Components/Products/Product'
+
 import Navigation from './Customer/Components/Navigation/Navigation'
+import Products from './Customer/Components/Products/Products'
 
 import Home from './Customer/pages/HomePages/Home'
 import {BrowserRouter, Routes , Route} from "react-router-dom"
@@ -13,7 +14,7 @@ function App() {
     <Navigation/>
     <Routes>
     <Route path="/" element={<Home/>}/>
-    {/* <Route path="/product" element={<Product/>}/> */}
+    <Route path="/product" element={<Products/>}/>
     </Routes>
 
     </BrowserRouter>
@@ -22,4 +23,4 @@ function App() {
     
   )
 }
-export default App
+export default App;

@@ -1,9 +1,11 @@
 import React from 'react';
 import './ProductCard.css';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ products }) => {
+  const navigate = useNavigate();
   return (
-    <div className="productCardContainer flex flex-wrap">
+    <div  onClick={()=>navigate(`/product/${5}`)} className="productCardContainer flex flex-wrap">
       {products.map((product, index) => {
         const { description, mrp, discountPrice, discount, imageSrc, imageAlt } = product;
         

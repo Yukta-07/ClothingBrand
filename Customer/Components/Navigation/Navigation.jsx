@@ -15,6 +15,7 @@ import {
   TabPanels,
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, UserCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
 
 const navigation = {
     categories: [
@@ -141,7 +142,13 @@ const navigation = {
 
 const  Navigation = () => {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate();
 
+
+  const handleCategoryClick = (category,section,item,close) => {
+   navigate(`/${category.id}/${section.id}/${item.id}`); 
+    close();
+  }
   return (
     <div className="bg-white">
       {/* Mobile menu */}
@@ -203,7 +210,7 @@ const  Navigation = () => {
                     </div>
                     {category.sections.map((section) => (
                       <div key={section.name}>
-                        <p id={`${category.id}-${section.id}-heading-mobile`} className="font-medium text-gray-900">
+                        <p onClick={handleCategoryClick} className="font-medium text-gray-900">
                           {section.name}
                         </p>
                         <ul
@@ -403,7 +410,7 @@ const  Navigation = () => {
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">User</span>
-                    <UserCircleIcon aria-hidden="true" className="h-6 w-6" />
+                    <UserCircleIcon onClick={() =>navigate("/orders")}aria-hidden="true" className="h-6 w-6" />
                   </a>
                 </div>
 

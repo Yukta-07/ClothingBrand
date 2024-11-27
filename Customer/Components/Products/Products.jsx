@@ -13,6 +13,11 @@ import {
   MenuItem,
   MenuItems,
 } from '@headlessui/react'
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { products } from './Product'
@@ -55,6 +60,8 @@ const handleFilter = (value , sectionId) => {
 const handleFilterChange = (e,sectionId) =>{
   const searchParams = new URLSearchParams(location.search)
   searchParams.set(sectionId,e.target.value)
+  const query=searchParams.toString();
+  navigate({search:`?${query}`})
 }
   return (
     <div className="bg-white">
@@ -108,6 +115,7 @@ const handleFilterChange = (e,sectionId) =>{
                               id={`filter-mobile-${section.id}-${optionIdx}`}
                               name={`${section.id}[]`}
                               type="checkbox"
+                              onChange={()=>handleFilter(option.value , section.id)}
                               className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
                             <label
@@ -233,7 +241,7 @@ const handleFilterChange = (e,sectionId) =>{
                   <Disclosure key={section.id} as="div" className="border-b border-gray-200 py-6">
                     <h3 className="-my-3 flow-root">
                       <DisclosureButton className="group flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                        <span className="font-medium text-gray-900">{section.name}</span>
+                      <FormLabel className='text-gray-900' id="demo-radio-buttons-group-label">{section.name}</FormLabel>
                         <span className="ml-6 flex items-center">
                           <PlusIcon aria-hidden="true" className="size-5 group-data-[open]:hidden" />
                           <MinusIcon aria-hidden="true" className="size-5 [.group:not([data-open])_&]:hidden" />
@@ -242,55 +250,88 @@ const handleFilterChange = (e,sectionId) =>{
                     </h3>
                     <DisclosurePanel className="pt-6">
                       <div className="space-y-4">
+                      <FormControl>
+                      <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="female"
+                            name="radio-buttons-group"
+                          >
+                         
+               
                         {section.options.map((option, optionIdx) => (
-                          <div key={option.value} className="flex items-center">
-                            <input
-                              defaultValue={option.value}
-                              defaultChecked={option.checked}
-                              id={`filter-${section.id}-${optionIdx}`}
-                              name={`${section.id}[]`}
-                              type="checkbox"
-                              className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label htmlFor={`filter-${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
-                              {option.label}
-                            </label>
-                          </div>
+                          <>
+                                          <FormControlLabel onChange={(e)=>handleFilterChange(e,section.id)} value={option.value} control={<Radio />} label={option.label} />
+                           
+                          </>
+                        // {section.options.map((option, optionIdx) => (
+                        //   <div key={option.value} className="flex items-center">
+                        //     <input
+                        //       defaultValue={option.value}
+                        //       defaultChecked={option.checked}
+                        //       id={`filter-${section.id}-${optionIdx}`}
+                        //       name={`${section.id}[]`}
+                        //       type="checkbox"
+                        //       className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        //     />
+                        //     <label htmlFor={`filter-${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
+                        //       {option.label}
+                        //     </label>
+                        //   </div>
                         ))}
+                           </RadioGroup>
+                           </FormControl>
                       </div>
                     </DisclosurePanel>
                   </Disclosure>
                 ))}
+                
                 {singleFilter.map((section) => (
+                  
                   <Disclosure key={section.id} as="div" className="border-b border-gray-200 py-6">
+                   
                     <h3 className="-my-3 flow-root">
                       <DisclosureButton className="group flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                        <span className="font-medium text-gray-900">{section.name}</span>
+                      <FormLabel className='text-gray-900' id="demo-radio-buttons-group-label">{section.name}</FormLabel>
                         <span className="ml-6 flex items-center">
-                          <PlusIcon aria-hidden="true" className="size-5 group-data-[open]:hidden" />
+                          <PlusIcon aria-hidden="true" className="size-5 group-data-[open]:hidden"/>
                           <MinusIcon aria-hidden="true" className="size-5 [.group:not([data-open])_&]:hidden" />
                         </span>
                       </DisclosureButton>
                     </h3>
                     <DisclosurePanel className="pt-6">
                       <div className="space-y-4">
+                      <FormControl>
+                      <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="female"
+                            name="radio-buttons-group"
+                          >
+                         
+               
                         {section.options.map((option, optionIdx) => (
-                          <div key={option.value} className="flex items-center">
-                            <input
-                              defaultValue={option.value}
-                              defaultChecked={option.checked}
-                              id={`filter-${section.id}-${optionIdx}`}
-                              name={`${section.id}[]`}
-                              type="checkbox"
-                              className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label htmlFor={`filter-${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
-                              {option.label}
-                            </label>
-                          </div>
+                          <>
+                                          <FormControlLabel onChange={(e)=>handleFilterChange(e,section.id)} value={option.value} control={<Radio />} label={option.label} />
+                           
+                          </>
+                          // <div key={option.value} className="flex items-center">
+                          //   <input
+                          //     defaultValue={option.value}
+                          //     defaultChecked={option.checked}
+                          //     id={`filter-${section.id}-${optionIdx}`}
+                          //     name={`${section.id}[]`}
+                          //     type="checkbox"
+                          //     className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          //   />
+                          //   <label htmlFor={`filter-${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
+                          //     {option.label}
+                          //   </label>
+                          // </div>
                         ))}
+                           </RadioGroup>
+                           </FormControl>
                       </div>
                     </DisclosurePanel>
+                   
                   </Disclosure>
                 ))}
               </form>

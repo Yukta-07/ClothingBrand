@@ -6,7 +6,7 @@ import { BannerData } from './BannerData';
 const HomeBanner = () => {
   // Create the carousel items outside of the JSX
   const items = BannerData.map((item) => (
-    <a target='_self' href='/'>
+    <a target='_self' href='/product'>
     <img className='cursor-pointer' role='presentation' src={item.image} width="100%" alt={item.path} key={item.path}/></a>
   ));
 
